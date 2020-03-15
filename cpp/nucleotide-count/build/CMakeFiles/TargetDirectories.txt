@@ -1,0 +1,4 @@
+/home/dirrgang/exercism/cpp/nucleotide-count/build/CMakeFiles/rebuild_cache.dir
+/home/dirrgang/exercism/cpp/nucleotide-count/build/CMakeFiles/edit_cache.dir
+/home/dirrgang/exercism/cpp/nucleotide-count/build/CMakeFiles/nucleotide-count.dir
+/home/dirrgang/exercism/cpp/nucleotide-count/build/CMakeFiles/test_nucleotide-count.dir
