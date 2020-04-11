@@ -1,25 +1,27 @@
 from typing import List
-from numbers import Complex
+
 
 class Matrix:
 
     def __init__(self, matrix_string: str) -> None:
-        self.matrix = self.__string_to_matrix(matrix_string)
+        self.matrix = self._string_to_matrix(matrix_string)
 
-    def row(self, index: int) -> List[Complex]:
+    def row(self, index: int) -> List[complex]:
         return self.matrix[index - 1]
 
-    def column(self, index: int) -> List[Complex]:
-        result = []
+    def column(self, index: int) -> List[complex]:
+        column: List[complex] = []
 
         for row in self.matrix:
-            result.append(row[index - 1])
-        return result
+            column.append(row[index - 1])
+        return column
 
-    def __string_to_matrix(self, string: str) -> List[Complex]:
-        matrix = string.split("\n")
+    def _string_to_matrix(self, string: str) -> List[List[complex]]:
+        rows = string.split("\n")
 
-        for row in range(len(matrix)):
-            matrix[row] = list(map(complex, matrix[row].split()))
+        matrix: List[List[complex]] = []
+
+        for row in range(len(rows)):
+            matrix.append(list(map(complex, rows[row].split())))
 
         return matrix
