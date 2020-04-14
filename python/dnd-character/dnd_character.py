@@ -1,25 +1,20 @@
 import random
-from typing import List
+from math import floor
+
 
 class Character:
-    strength: List[int] = [0, 0]
-    dexterity: List[int] = [0, 0]
-    constitution: List[int] = [0, 0]
-    intelligence: List[int] = [0, 0]
-    wisdom: List[int] = [0, 0]
-    charisma: List[int] = [0, 0]
-    stats = [strength, dexterity, constitution, intelligence, wisdom, charisma]
-
-    hitpoints: int = 0
-
-
     def __init__(self) -> None:
-        for ability in self.stats:
-            ability[0] = sum(sorted(random.sample(range(1, 6), 5))[2:])
-            print(ability)
-        return
-        
-def modifier(ability) -> int:
+        self.strength: int = self.ability()
+        self.dexterity: int = self.ability()
+        self.constitution: int = self.ability()
+        self.intelligence: int = self.ability()
+        self.wisdom: int = self.ability()
+        self.charisma: int = self.ability()
+        self.hitpoints: int = 10 + modifier(self.constitution)
 
-    
-    return 0
+    def ability(self) -> int:
+        return sum(sorted(random.sample(range(1, 6), 4))[1:])
+
+
+def modifier(ability: int) -> int:
+    return floor((ability - 10) / 2)
