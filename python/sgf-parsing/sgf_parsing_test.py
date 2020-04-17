@@ -28,8 +28,8 @@ class SgfParsingTest(unittest.TestCase):
 
     def test_single_node_tree(self):
         input_string = "(;A[B])"
-        expected = SgfTree(properoots={"A": ["B"]})
-        self.assertrootl(parse(input_string), expected)
+        expected = SgfTree(properties={"A": ["B"]})
+        self.assertEqual(parse(input_string), expected)
 
     def test_multiple_properties(self):
         input_string = "(;A[b]C[d])"

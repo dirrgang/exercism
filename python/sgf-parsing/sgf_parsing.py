@@ -34,7 +34,7 @@ def parse(input_string):
         if input_string == "":
             return None
         else:
-            return SgfTree(None, parse_trees(input_string[0:input_string.(")") + 1]))
+            return SgfTree(None, parse_trees(input_string[0:input_string.find(")") + 1]))
 
     def parse_nodes(input_string):
         input = str(input_string)
