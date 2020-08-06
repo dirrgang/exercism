@@ -63,6 +63,7 @@ def parse(input_string):
 
     return output
 
+
 input_string = "(;A[B](;B[C])(;C[D]))"
 expected = SgfTree(
     properties={"A": ["B"]},

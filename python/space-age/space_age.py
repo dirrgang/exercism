@@ -1,5 +1,5 @@
 class SpaceAge(object):
-    def __init__(self, seconds):
+    def __init__(self, seconds: int):
         self.age = seconds / 31557600
 
     def on_earth(self):

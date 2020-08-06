@@ -1,4 +1,4 @@
-def convert(number):
+def convert(number: int):
     result = []
     if number % 3 == 0:
         result.append("Pling")

@@ -10,4 +10,5 @@ def find_anagrams(word: str, candidates: List[str]) -> List[str]:
 
 
 def is_anagram(word1: str, word2: str) -> bool:
-    return Counter(c for c in word1.lower()) == Counter(c for c in word2.lower())
+    # Counts the occurences of each letter in both words and compares them.
+    return (Counter(c for c in word1.lower()) == Counter(c for c in word2.lower()))

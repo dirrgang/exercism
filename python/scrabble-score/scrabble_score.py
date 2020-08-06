@@ -1,6 +1,7 @@
 def score(word: str) -> int:
     letter_values: dict[str, int] = {}
-    letter_values.update(dict.fromkeys(["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"], 1))
+    letter_values.update(dict.fromkeys(
+        ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"], 1))
     letter_values.update(dict.fromkeys(["D", "G"], 2))
     letter_values.update(dict.fromkeys(["B", "C", "M", "P"], 3))
     letter_values.update(dict.fromkeys(["F", "H", "V", "W", "Y"], 4))

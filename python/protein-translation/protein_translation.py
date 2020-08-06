@@ -1,10 +1,13 @@
-def proteins(strand):
+from typing import List
+
+
+def proteins(strand: str) -> List[str]:
     codondict = {
         "AUG": "Methionine",
         "UUU": "Phenylalanine",
         "UUC": "Phenylalanine",
-        "UUA":  "Leucine",
-        "UUG":  "Leucine",
+        "UUA": "Leucine",
+        "UUG": "Leucine",
         "UCU": "Serine",
         "UCC": "Serine",
         "UCA": "Serine",

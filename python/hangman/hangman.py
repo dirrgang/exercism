@@ -13,7 +13,7 @@ class Hangman:
         self.word = list(word)
         self.masked_word = list("_"*len(word))
 
-    def guess(self, char: str) -> str:
+    def guess(self, char: str) -> None:
         if not self.status == STATUS_ONGOING:
             raise ValueError(char)
 

@@ -16,6 +16,7 @@ You can learn more here: https://en.wikipedia.org/wiki/Enumerated_type
 # Change the values as you see fit.
 
 from enum import auto
+from typing import List
 
 YACHT = auto()
 ONES = auto()
@@ -31,7 +32,7 @@ BIG_STRAIGHT = auto()
 CHOICE = auto()
 
 
-def score(dice, category):
+def score(dice: List[int], category: int) -> int:
     if category == ONES:
         return dice.count(1)
 
@@ -86,3 +87,5 @@ def score(dice, category):
             if die != last:
                 return 0
         return 50
+    else:
+        return -1

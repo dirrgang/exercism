@@ -1,22 +1,38 @@
 from typing import List
 
-def factors(value: int) -> List[int]:
-    factors: List[int] = []
+def factors(n: int) -> List[int]:
 
-    while value % 2 == 0:
-        factors.append(2)
-        value = int(value/2)
+    factorization = []
+    primes = sieve_of_eratosthenes(n)
 
-    potential_factor = 3
+    for d in primes:
+        if (d*d > n):
+            break
+        while (n % d == 0):
 
-    while potential_factor ** 2 <= value:
-        if value % potential_factor == 0:
-            factors.append(potential_factor)
-            value = int(value/potential_factor)
-        else:
-            potential_factor += 2
+            factorization.append(d)
+            n /= d
+    if n > 1:
+        factorization.append(n)
 
-    if value != 1:
-        factors.append(value)
+    return factorization
 
-    return factors
+
+def fermat(n: int)
+
+# def sieve_of_eratosthenes(n: int) -> List[int]:
+
+#     primes: List[bool] = [True for i in range(n + 1)]
+
+#     primes[0] = primes[1] = False
+
+#     i = 2
+    # while (i*i <= n):
+#         if (primes[i]):
+#             j = i*i
+#             while(j <= n):
+#                 primes[j] = False
+#                 j += i
+#         i += 1
+
+#     return [index for index in range(n) if primes[index] == True]

@@ -1,4 +1,4 @@
-def reverse(text):
+def reverse(text: str) -> str:
     """String slicing can accept a third parameter in addition to two index numbers. The third 
     parameter specifies the stride, which refers to how many characters to move forward after the 
     first character is retrieved from the string. So far, we have omitted the stride parameter, and 

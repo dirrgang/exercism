@@ -5,9 +5,9 @@ def slices(series: str, length: int):
 
     result = []
     i = 0
-    
-    while i+length <= len(series):
-        result.append(series[i:i+length])
+
+    while i + length <= len(series):
+        result.append(series[i:i + length])
         i += 1
 
     return result
