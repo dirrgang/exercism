@@ -1,13 +1,18 @@
 module Clock (addDelta, fromHourMin, toString) where
 
-data Clock = Dummy
-  deriving Eq
+import Text.Printf
+
+data Clock = Clock Int Int
+  deriving (Eq)
 
 fromHourMin :: Int -> Int -> Clock
-fromHourMin hour min = error "You need to implement this function."
+fromHourMin hour min = Clock ((hour + min `div` 60) `mod` 24) (min `mod` 60)
 
 toString :: Clock -> String
-toString clock = error "You need to implement this function."
+toString (Clock hour minutes) = printf "%02d:%02d" hour minutes
 
 addDelta :: Int -> Int -> Clock -> Clock
-addDelta hour min clock = error "You need to implement this function."
+addDelta hour min (Clock oHour oMin) = Clock newHour newMin
+  where
+    newHour = (hour + oHour + ((min + oMin) `div` 60)) `mod` 24
+    newMin = (min + oMin) `mod` 60
