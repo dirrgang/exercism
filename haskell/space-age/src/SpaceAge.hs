@@ -11,16 +11,18 @@ data Planet
   | Neptune
   deriving (Show, Eq)
 
+earthOrbitRatio :: Planet -> Float
+earthOrbitRatio Mercury = 0.2408467
+earthOrbitRatio Venus = 0.61519726
+earthOrbitRatio Earth = 1.0
+earthOrbitRatio Mars = 1.8808158
+earthOrbitRatio Jupiter = 11.862615
+earthOrbitRatio Saturn = 29.447498
+earthOrbitRatio Uranus = 84.016846
+earthOrbitRatio Neptune = 164.79132
+
 ageOn :: Planet -> Float -> Float
-ageOn planet seconds
-  | planet == Mercury = earthYears / 0.2408467
-  | planet == Venus = earthYears / 0.61519726
-  | planet == Earth = earthYears / 1.0
-  | planet == Mars = earthYears / 1.8808158
-  | planet == Jupiter = earthYears / 11.862615
-  | planet == Saturn = earthYears / 29.447498
-  | planet == Uranus = earthYears / 84.016846
-  | planet == Neptune = earthYears / 164.79132
-  | otherwise = -1.0
+ageOn planet seconds = earthOrbits / earthOrbitRatio planet
   where
-    earthYears = seconds / 31557600
+    earthOrbitInSeconds = 31557600
+    earthOrbits = seconds / earthOrbitInSeconds
