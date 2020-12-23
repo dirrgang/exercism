@@ -1,14 +1,10 @@
 module Pangram (isPangram) where
 
-import Data.Set (Set)
+import qualified Data.Char as C
 import qualified Data.Set as Set
-import qualified Data.Text as T
-
-normalizeString :: String -> T.Text
-normalizeString xs = T.toLower $ T.pack xs
 
 isPangram :: String -> Bool
-isPangram text = True
+isPangram text = alphabet `Set.isSubsetOf` normalizedText
   where
-    normalizedText = normalizeString text
+    normalizedText = Set.fromList $ map C.toLower text
     alphabet = Set.fromList ['a' .. 'z']
