@@ -1,11 +1,12 @@
 module CollatzConjecture (collatz) where
 
 collatz :: Integer -> Maybe Integer
-collatz n = helper n 0
+collatz n
+  | n <= 0 = Nothing
+  | otherwise = Just $ collatz' n 0
   where
-    helper :: Integer -> Integer -> Maybe Integer
-    helper n acc
-      | n <= 0 = Nothing
-      | n == 1 = Just acc
-      | even n = helper (n `div` 2) (acc + 1)
-      | otherwise = helper (3 * n + 1) (acc + 1)
+    collatz' :: Integer -> Integer -> Integer
+    collatz' 1 acc = acc
+    collatz' n acc
+      | even n = collatz' (n `div` 2) (acc + 1)
+      | otherwise = collatz' (3 * n + 1) (acc + 1)
