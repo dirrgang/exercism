@@ -8,6 +8,5 @@ normalizeString xs = T.unpack $ T.toLower $ T.pack xs
 
 anagramsFor :: String -> [String] -> [String]
 anagramsFor xs yss =
-  [ ys | ys <- yss, MultiSet.fromList (normalizeString ys) == MultiSet.fromList (normalizeString xs)
-                      && normalizeString xs /= normalizeString ys
+  [ ys | ys <- yss, MultiSet.fromList (normalizeString ys) == MultiSet.fromList (normalizeString xs), normalizeString xs /= normalizeString ys
   ]
