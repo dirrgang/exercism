@@ -1,23 +1,27 @@
+{-# LANGUAGE TupleSections #-}
 module DNA (nucleotideCounts, Nucleotide (..)) where
 
+import Data.Either ( fromRight, isRight )
 import qualified Data.Map as M
-import Data.Maybe
 
 data Nucleotide = A | C | G | T deriving (Eq, Ord, Show)
 
-trans :: Char -> Maybe Nucleotide
-trans 'G' = Just G
-trans 'C' = Just C
-trans 'T' = Just T
-trans 'A' = Just A
-trans _ = Nothing
+trans :: Char -> Either Char Nucleotide
+trans 'G' = Right G
+trans 'C' = Right C
+trans 'T' = Right T
+trans 'A' = Right A
+trans x = Left x
 
 nucleotideCounts :: String -> Either String (M.Map Nucleotide Int)
 nucleotideCounts xs
-  | all (`elem` "ACGT") xs && isJust nucleotides = Right (nucleotideCounts' (fromJust nucleotides) (M.fromList [(A, 0), (C, 0), (G, 0), (T, 0)]))
+  -- | isRight nucleotides = Right (M.fromListWith (+) [(x, 1) | x <- fromRight [] nucleotides])
+  -- | isRight nucleotides = Right (M.fromListWith (+) (map (, 1) (fromRight [] nucleotides)))
+  | all (`elem` "GCTA") xs = Right (M.fromListWith (+) (map (\x -> (translate x, 1)) xs))
   | otherwise = Left []
   where
-    nucleotides = traverse trans xs
-    nucleotideCounts' :: [Nucleotide] -> M.Map Nucleotide Int -> M.Map Nucleotide Int
-    nucleotideCounts' [] acc = acc
-    nucleotideCounts' (x : xs) acc = nucleotideCounts' xs (M.adjust (1 +) x acc)
+    translate :: Char -> Nucleotide
+    translate x
+      | isRight (trans x) = fromRight G $ trans x
+      | otherwise = error "done fucked up."
+  --   nucleotides = traverse trans xs
