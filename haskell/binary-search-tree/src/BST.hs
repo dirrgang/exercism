@@ -1,37 +1,46 @@
 module BST
-    ( BST
-    , bstLeft
-    , bstRight
-    , bstValue
-    , empty
-    , fromList
-    , insert
-    , singleton
-    , toList
-    ) where
+  ( BST,
+    bstLeft,
+    bstRight,
+    bstValue,
+    empty,
+    fromList,
+    insert,
+    singleton,
+    toList,
+  )
+where
 
-data BST a = Dummy deriving (Eq, Show)
+data BST a = Leaf a (BST a) (BST a) | EmptyTree deriving (Eq, Show)
 
 bstLeft :: BST a -> Maybe (BST a)
-bstLeft tree = error "You need to implement this function."
+bstLeft EmptyTree = Nothing
+bstLeft (Leaf _ left _) = Just left
 
 bstRight :: BST a -> Maybe (BST a)
-bstRight tree = error "You need to implement this function."
+bstRight EmptyTree = Nothing
+bstRight (Leaf _ _ right) = Just right
 
 bstValue :: BST a -> Maybe a
-bstValue tree = error "You need to implement this function."
+bstValue EmptyTree = Nothing
+bstValue (Leaf x _ _) = Just x
 
 empty :: BST a
-empty = error "You need to implement this function."
+empty = EmptyTree
 
 fromList :: Ord a => [a] -> BST a
-fromList xs = error "You need to implement this function."
+fromList = foldl (flip insert) empty
 
 insert :: Ord a => a -> BST a -> BST a
-insert x tree = error "You need to implement this function."
+insert x EmptyTree = singleton x
+insert x (Leaf val left right)
+  | x <= val = Leaf val (insert x left) right
+  | x > val = Leaf val left (insert x right)
+  | otherwise = EmptyTree
 
 singleton :: a -> BST a
-singleton x = error "You need to implement this function."
+singleton x = Leaf x EmptyTree EmptyTree
 
 toList :: BST a -> [a]
-toList tree = error "You need to implement this function."
+toList EmptyTree = []
+toList (Leaf val left right) = toList left ++ (val : toList right)
